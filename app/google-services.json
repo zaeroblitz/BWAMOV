@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "684553905129",
+    "firebase_url": "https://bwamov-9f5fe.firebaseio.com",
+    "project_id": "bwamov-9f5fe",
+    "storage_bucket": "bwamov-9f5fe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:684553905129:android:3dc67d7bc506ccf4caa178",
+        "android_client_info": {
+          "package_name": "com.zaeroblitz.bwamov"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "684553905129-erkbd9s1o48au5bgrspikbpmb5uko8qe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zaeroblitz.bwamov",
+            "certificate_hash": "57fb8b2d0ffdb523ac36d8266dcb394195b2c4a8"
+          }
+        },
+        {
+          "client_id": "684553905129-3hqkpc4bf7h7jq78l3tv1n5tnn9q6ag9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzZLWirhld03xOfw4kDxdE-p2zLTrFCQQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "684553905129-3hqkpc4bf7h7jq78l3tv1n5tnn9q6ag9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
