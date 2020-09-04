@@ -32,8 +32,7 @@ class ProfileFragment : Fragment() {
         tv_email.text = preferences.getValues(Preferences.USER_EMAIL)
 
         Glide.with(context!!)
-            .load(Preferences.USER_URL)
-            .centerCrop()
+            .load(preferences.getValues(Preferences.USER_URL))
             .apply(RequestOptions.circleCropTransform())
             .into(iv_profile)
     }

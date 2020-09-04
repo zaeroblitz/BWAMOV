@@ -8,6 +8,7 @@ import android.widget.Toast
 import com.google.firebase.database.*
 import com.zaeroblitz.bwamov.R
 import com.zaeroblitz.bwamov.model.User
+import com.zaeroblitz.bwamov.utils.Preferences
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : AppCompatActivity(), View.OnClickListener {
@@ -19,6 +20,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var mDatabase: DatabaseReference
     private lateinit var mFirebaseInstance: FirebaseDatabase
+    private lateinit var preferences: Preferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +29,8 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
         // Mendapatkan path User dari Firebase
         mFirebaseInstance = FirebaseDatabase.getInstance()
         mDatabase = mFirebaseInstance.getReference("User")
+
+        preferences = Preferences(this)
 
         btn_next_sign_up_photo.setOnClickListener(this)
     }
@@ -102,6 +106,13 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
                 if (user == null) {
                     mDatabase.child(sUsername).setValue(data)
 
+                    preferences.setValues(Preferences.USER_NAME, data.nama.toString())
+                    preferences.setValues(Preferences.USER_USERNAME, data.username.toString())
+                    preferences.setValues(Preferences.USER_EMAIL, data.email.toString())
+                    preferences.setValues(Preferences.USER_URL, "")
+                    preferences.setValues(Preferences.USER_BALANCE, "")
+                    preferences.setValues(Preferences.USER_STATUS, "1")
+
                     val goSignUpPhotoScreenActivity = Intent(this@SignUpActivity, SignUpPhotoScreenActivity::class.java)
 
                     // Mengirim nama ke SignUpPhotoActivity
@@ -118,7 +129,6 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
             override fun onCancelled(databaseError: DatabaseError) {
                 Toast.makeText(this@SignUpActivity, databaseError.message, Toast.LENGTH_LONG).show()
             }
-
         })
     }
 }

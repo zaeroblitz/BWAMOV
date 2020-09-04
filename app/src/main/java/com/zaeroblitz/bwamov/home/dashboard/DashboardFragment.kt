@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.database.*
 import com.zaeroblitz.bwamov.R
 import com.zaeroblitz.bwamov.adapter.ComingSoonAdapter
@@ -48,13 +50,22 @@ class DashboardFragment : Fragment() {
         tv_name.text = preferences.getValues(Preferences.USER_NAME)
 
         //currency(preferences.getValues(Preferences.USER_BALANCE)!!.toDouble(), tv_balance)
+        if (!preferences.getValues(Preferences.USER_BALANCE).equals("")){
+            currency(preferences.getValues(Preferences.USER_BALANCE)!!.toDouble(), tv_balance)
+        }
 
+        Glide.with(this)
+            .load(preferences.getValues(Preferences.USER_URL))
+            .apply(RequestOptions.circleCropTransform())
+            .into(iv_profile)
 
         // Setting LayoutManager RecyclerView dari Now Playing dan Coming Soon
         rv_now_playing.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         rv_coming_soon.layoutManager = LinearLayoutManager(context)
 
         getData()
+
+
     }
 
     private fun getData() {

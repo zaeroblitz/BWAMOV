@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.github.dhaval2404.imagepicker.ImagePicker
+import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.karumi.dexter.PermissionToken
@@ -20,6 +21,7 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import com.zaeroblitz.bwamov.home.HomeScreenActivity
 import com.zaeroblitz.bwamov.R
+import com.zaeroblitz.bwamov.model.User
 import com.zaeroblitz.bwamov.utils.Preferences
 import kotlinx.android.synthetic.main.activity_sign_up_photo_screen.*
 import java.util.*
@@ -38,6 +40,9 @@ class SignUpPhotoScreenActivity : AppCompatActivity(), View.OnClickListener, Per
     private lateinit var storageReference: StorageReference
     private lateinit var preferences: Preferences
 
+    private var user: User? = null
+    private lateinit var mDatabase: DatabaseReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up_photo_screen)
@@ -48,6 +53,11 @@ class SignUpPhotoScreenActivity : AppCompatActivity(), View.OnClickListener, Per
         // Mendapatkan akses ke Firebase Storage
         storage = FirebaseStorage.getInstance()
         storageReference = storage.reference
+
+        // Mendapatkan Path User dari firebase
+        mDatabase = FirebaseDatabase.getInstance().getReference("User")
+
+        user = intent.getParcelableExtra(EXTRA_NAME)
 
         // Mengganti nama sesuai dengan nama di SignUp
         val getName = "Welcome, \n ${intent.getStringExtra(EXTRA_NAME)}"
@@ -138,6 +148,33 @@ class SignUpPhotoScreenActivity : AppCompatActivity(), View.OnClickListener, Per
             }
         }
     }
+
+    private fun saveToFirebase(url: String) {
+
+        mDatabase.child(user?.username!!).addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                user?.url = url
+                mDatabase.child(user?.username!!).setValue(user)
+
+                preferences.setValues(Preferences.USER_NAME, user?.nama.toString())
+                preferences.setValues(Preferences.USER_USERNAME, user?.username.toString())
+                preferences.setValues(Preferences.USER_EMAIL, user?.username.toString())
+                preferences.setValues(Preferences.USER_URL, url)
+                preferences.setValues(Preferences.USER_BALANCE, "")
+                preferences.setValues(Preferences.USER_STATUS, "1")
+
+                finishAffinity()
+                val intent = Intent(this@SignUpPhotoScreenActivity, HomeScreenActivity::class.java)
+                startActivity(intent)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@SignUpPhotoScreenActivity, error.message, Toast.LENGTH_SHORT).show()
+            }
+
+        })
+    }
+
 
     // Permission Storage pada Android
     override fun onPermissionGranted(response: PermissionGrantedResponse?) {
