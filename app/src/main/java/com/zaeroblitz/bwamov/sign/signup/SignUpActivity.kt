@@ -110,7 +110,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
                     preferences.setValues(Preferences.USER_USERNAME, data.username.toString())
                     preferences.setValues(Preferences.USER_EMAIL, data.email.toString())
                     preferences.setValues(Preferences.USER_URL, "")
-                    preferences.setValues(Preferences.USER_BALANCE, "")
+                    preferences.setValues(Preferences.USER_BALANCE, "500000")
                     preferences.setValues(Preferences.USER_STATUS, "1")
 
                     val goSignUpPhotoScreenActivity = Intent(this@SignUpActivity, SignUpPhotoScreenActivity::class.java)

@@ -161,7 +161,7 @@ class SignUpPhotoScreenActivity : AppCompatActivity(), View.OnClickListener, Per
                 preferences.setValues(Preferences.USER_USERNAME, user?.username.toString())
                 preferences.setValues(Preferences.USER_EMAIL, user?.username.toString())
                 preferences.setValues(Preferences.USER_URL, url)
-                preferences.setValues(Preferences.USER_BALANCE, "")
+                preferences.setValues(Preferences.USER_BALANCE, "500000")
                 preferences.setValues(Preferences.USER_STATUS, "1")
 
                 finishAffinity()

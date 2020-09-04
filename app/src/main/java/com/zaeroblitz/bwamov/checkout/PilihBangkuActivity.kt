@@ -18,7 +18,7 @@ class PilihBangkuActivity : AppCompatActivity() , View.OnClickListener{
 
     private var total: Int = 0
 
-    private var dataList = ArrayList<Checkout>()
+    private var dataCheckout = ArrayList<Checkout>()
 
     companion object{
         const val EXTRA_DATA_CHOOSE_SEAT = "data"
@@ -64,8 +64,8 @@ class PilihBangkuActivity : AppCompatActivity() , View.OnClickListener{
                     total += 1
                     buyTotalTicket(total)
 
-                    val data = Checkout("A1", 25000)
-                    dataList.add(data)
+                    val dataTicket = Checkout("A1", 25000)
+                    dataCheckout.add(dataTicket)
                 }
             }
             R.id.seat_a2 -> {
@@ -80,8 +80,8 @@ class PilihBangkuActivity : AppCompatActivity() , View.OnClickListener{
                     total += 1
                     buyTotalTicket(total)
 
-                    val data = Checkout("A2", 25000)
-                    dataList.add(data)
+                    val dataTicket = Checkout("A2", 25000)
+                    dataCheckout.add(dataTicket)
                 }
             }
             R.id.seat_a3 -> {
@@ -96,8 +96,8 @@ class PilihBangkuActivity : AppCompatActivity() , View.OnClickListener{
                     total += 1
                     buyTotalTicket(total)
 
-                    val data = Checkout("A3", 25000)
-                    dataList.add(data)
+                    val dataTicket = Checkout("A3", 25000)
+                    dataCheckout.add(dataTicket)
                 }
             }
             R.id.seat_a4 -> {
@@ -113,12 +113,14 @@ class PilihBangkuActivity : AppCompatActivity() , View.OnClickListener{
                     buyTotalTicket(total)
 
                     val data = Checkout("A4", 25000)
-                    dataList.add(data)
+                    dataCheckout.add(data)
                 }
             }
             R.id.btn_choose_seat -> {
+                val data = intent.getParcelableExtra<Film>(EXTRA_DATA_CHOOSE_SEAT)
                 val goCheckoutActivity = Intent(this, CheckoutActivity::class.java)
-                goCheckoutActivity.putExtra(CheckoutActivity.EXTRA_DATA_CHECKOUT, dataList)
+                goCheckoutActivity.putExtra(CheckoutActivity.EXTRA_DATA_CHECKOUT, dataCheckout)
+                goCheckoutActivity.putExtra(CheckoutActivity.EXTRA_DATA_FILM, data)
                 startActivity(goCheckoutActivity)
             }
         }
