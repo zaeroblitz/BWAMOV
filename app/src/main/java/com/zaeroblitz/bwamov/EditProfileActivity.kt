@@ -11,6 +11,5 @@ class EditProfileActivity : AppCompatActivity() {
 
         println("test")
         today is a good day
-        asdasdasdasda sdasda as
     }
 }
