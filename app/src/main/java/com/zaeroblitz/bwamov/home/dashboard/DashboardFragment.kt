@@ -54,10 +54,18 @@ class DashboardFragment : Fragment() {
             currency(preferences.getValues(Preferences.USER_BALANCE)!!.toDouble(), tv_balance)
         }
 
-        Glide.with(this)
-            .load(preferences.getValues(Preferences.USER_URL))
-            .apply(RequestOptions.circleCropTransform())
-            .into(iv_profile)
+        if (preferences.getValues(Preferences.USER_URL) == "") {
+            Glide.with(this)
+                .load(R.drawable.user_pic)
+                .apply(RequestOptions.circleCropTransform())
+                .into(iv_profile)
+        } else {
+            Glide.with(this)
+                .load(preferences.getValues(Preferences.USER_URL))
+                .apply(RequestOptions.circleCropTransform())
+                .into(iv_profile)
+        }
+
 
         // Setting LayoutManager RecyclerView dari Now Playing dan Coming Soon
         rv_now_playing.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)

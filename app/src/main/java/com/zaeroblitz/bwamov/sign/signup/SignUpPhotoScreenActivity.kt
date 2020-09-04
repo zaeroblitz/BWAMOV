@@ -80,7 +80,7 @@ class SignUpPhotoScreenActivity : AppCompatActivity(), View.OnClickListener, Per
                 */
                 if (statusAdd) {
                     statusAdd = false
-                    btn_save_and_continue.visibility = View.VISIBLE
+                    btn_save_and_continue.visibility = View.INVISIBLE
                     btn_add_photo.setImageResource(R.drawable.btn_upload)
                     profileImage.setImageResource(R.drawable.user_pic)
                 } else {
@@ -92,6 +92,7 @@ class SignUpPhotoScreenActivity : AppCompatActivity(), View.OnClickListener, Per
                     ImagePicker.with(this)
                         .crop()
                         .start()
+                    btn_save_and_continue.visibility = View.VISIBLE
                 }
             }
 
@@ -113,7 +114,7 @@ class SignUpPhotoScreenActivity : AppCompatActivity(), View.OnClickListener, Per
                             Toast.makeText(this, "Uploaded", Toast.LENGTH_SHORT).show()
 
                             ref.downloadUrl.addOnSuccessListener {
-                                preferences.setValues("url", it.toString())
+                                saveToFirebase(it.toString())
                             }
 
                             finishAffinity()

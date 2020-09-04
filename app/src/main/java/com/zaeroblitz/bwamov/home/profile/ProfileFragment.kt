@@ -9,7 +9,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.zaeroblitz.bwamov.R
 import com.zaeroblitz.bwamov.utils.Preferences
+import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.fragment_profile.iv_profile
+import kotlinx.android.synthetic.main.fragment_profile.tv_name
 
 class ProfileFragment : Fragment() {
 
@@ -31,9 +34,16 @@ class ProfileFragment : Fragment() {
         tv_name.text = preferences.getValues(Preferences.USER_NAME)
         tv_email.text = preferences.getValues(Preferences.USER_EMAIL)
 
-        Glide.with(context!!)
-            .load(preferences.getValues(Preferences.USER_URL))
-            .apply(RequestOptions.circleCropTransform())
-            .into(iv_profile)
+        if (preferences.getValues(Preferences.USER_URL) == "") {
+            Glide.with(this)
+                .load(R.drawable.user_pic)
+                .apply(RequestOptions.circleCropTransform())
+                .into(iv_profile)
+        } else {
+            Glide.with(this)
+                .load(preferences.getValues(Preferences.USER_URL))
+                .apply(RequestOptions.circleCropTransform())
+                .into(iv_profile)
+        }
     }
 }
