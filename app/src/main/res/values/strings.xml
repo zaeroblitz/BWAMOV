@@ -82,4 +82,18 @@
     <string name="help">Help</string>
     <string name="barcode_dialog">Silahkan melakukan scanning pada counter tiket terdekat</string>
     <string name="tutup">Tutup</string>
+    <string name="top_up_saldo">Top Up Saldo</string>
+    <string name="custom_amount">Custom Amount</string>
+    <string name="custom_amount_text">Jumlah nominal</string>
+    <string name="quick_options">Quick Options</string>
+    <string name="top_up_10k">IDR \n10.000</string>
+    <string name="top_up_25k">IDR \n25.000</string>
+    <string name="top_up_50k">IDR \n50.000</string>
+    <string name="top_up_75k">IDR \n75.000</string>
+    <string name="top_up_100k">IDR \n100.000</string>
+    <string name="top_up_200k">IDR \n200.000</string>
+    <string name="top_up_sekarang">Top Up Sekarang</string>
+    <string name="success_top_up_headline">Yout Got It</string>
+    <string name="success_top_up_message">E-Wallet telah berhasil \nuntuk diperbarui</string>
+    <string name="lihat_transaksi">Lihat Transaksi</string>
 </resources>

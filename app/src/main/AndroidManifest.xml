@@ -24,9 +24,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".home.ticket.TicketPurchasedActivity"></activity>
+        <activity android:name=".wallet.SuccessTopUpActivity"></activity>
+        <activity android:name=".wallet.TopUpActivity" />
+        <activity android:name=".home.ticket.TicketPurchasedActivity" />
         <activity android:name=".HistoryScreenActivity" />
-        <activity android:name=".MyWalletActivity" />
+        <activity android:name=".wallet.MyWalletActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".checkout.CheckoutSuccessActivity" />
         <activity android:name=".checkout.CheckoutActivity" />
