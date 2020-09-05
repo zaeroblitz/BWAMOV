@@ -8,8 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.zaeroblitz.bwamov.R
 import com.zaeroblitz.bwamov.model.Checkout
-import java.text.NumberFormat
-import java.util.*
 
 class TicketAdapter(private var data: List<Checkout>, private val listener: (Checkout) -> Unit)
     : RecyclerView.Adapter<TicketAdapter.ViewHolder>() {

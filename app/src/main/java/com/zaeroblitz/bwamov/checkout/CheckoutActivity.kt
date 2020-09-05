@@ -24,7 +24,6 @@ import java.text.NumberFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-@Suppress("UNCHECKED_CAST")
 class CheckoutActivity : AppCompatActivity(), View.OnClickListener {
 
     companion object{
@@ -73,7 +72,10 @@ class CheckoutActivity : AppCompatActivity(), View.OnClickListener {
                 goSuccessActivity.putExtra(CheckoutSuccessActivity.EXTRA_DATA_TICKET, data)
                 startActivity(goSuccessActivity)
 
-                showNotification(data)
+                if (data != null) {
+                    showNotification(data)
+                }
+
             }
             R.id.btn_cancel -> {
                 finish()
