@@ -20,21 +20,20 @@ class CheckoutSuccessActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_checkout_success)
 
+        btn_home.setOnClickListener(this)
+        btn_view_ticket.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
         when(v.id){
             R.id.btn_home -> {
-                finishAffinity()
-
                 val goHomeScreenActivity = Intent(this@CheckoutSuccessActivity, HomeScreenActivity::class.java)
                 startActivity(goHomeScreenActivity)
             }
             R.id.btn_view_ticket -> {
                 val data = intent.getParcelableExtra<Film>(EXTRA_DATA_TICKET)
-
                 val mIntent = Intent(this, TicketPurchasedActivity::class.java)
-                mIntent.putExtra(EXTRA_DATA_TICKET, data)
+                mIntent.putExtra(TicketPurchasedActivity.EXTRA_DATA, data)
                 startActivity(mIntent)
             }
         }

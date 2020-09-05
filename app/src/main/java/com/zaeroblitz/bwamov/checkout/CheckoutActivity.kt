@@ -74,7 +74,6 @@ class CheckoutActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(goSuccessActivity)
 
                 showNotification(data)
-
             }
             R.id.btn_cancel -> {
                 finish()
@@ -129,11 +128,12 @@ class CheckoutActivity : AppCompatActivity(), View.OnClickListener {
                 )
             )
             .setTicker("Notif BWA  Starting")
+            .setAutoCancel(true)
             .setVibrate(longArrayOf(1000, 1000, 1000, 1000, 1000))
             .setLights(Color.RED, 3000, 3000)
             .setDefaults(Notification.DEFAULT_SOUND)
             .setContentTitle("Success buy ticket")
-            .setContentText("Tiket ${datas.judul} berhasil kamu dapatkan. Enjoy the movie.")
+            .setContentText("Tiket ${datas.judul} berhasil kamu dapatkan.\nEnjoy the movie.")
 
         notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.notify(115, builder.build())

@@ -80,4 +80,6 @@
     <string name="keep_it_up_to_date">Keep it up to date</string>
     <string name="change_language">Change Language</string>
     <string name="help">Help</string>
+    <string name="barcode_dialog">Silahkan melakukan scanning pada counter tiket terdekat</string>
+    <string name="tutup">Tutup</string>
 </resources>
